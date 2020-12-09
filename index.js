@@ -11,5 +11,6 @@ document.addEventListener('DOMContentLoaded',function () {
             Text: formData.get('todo-text'),
         }
         todos.push(todoItem);
+        document.getElementById('myform').reset();
     });
 })
