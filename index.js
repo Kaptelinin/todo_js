@@ -13,8 +13,19 @@ document.addEventListener('DOMContentLoaded',function () {
         this.reset();
     }
 
+    function buildHTMLList(){
+        for(i = 0;i < todos.length;i++)
+         {
+            outList.push(`<li>${todos.Text[i]}</li>`);
+         }
+        const innerValue = outList.join('\n');
+        const result = `<ul>${innerValue}</ul>`;
+        return result;
+    }
+
     $todoForm.on('submit', function(event) {
         event.preventDefault();
         addItem.call(this,'todo-text');
+        buildHTMLList();
     });
-})
+});
