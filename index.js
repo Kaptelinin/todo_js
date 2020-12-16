@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded',function () {
     const todos = [];
+    const $todoList = $('#todo-list');
     const $todoForm = $('#todo-form');
 
     function addItem(todoInputName){
@@ -10,22 +11,17 @@ document.addEventListener('DOMContentLoaded',function () {
             Text: formData.get(todoInputName),
         }
         todos.push(todoItem);
-        this.reset();
     }
 
-    function buildHTMLList(){
-        for(i = 0;i < todos.length;i++)
-         {
-            outList.push(`<li>${todos.Text[i]}</li>`);
-         }
-        const innerValue = outList.join('\n');
-        const result = `<ul>${innerValue}</ul>`;
-        return result;
+    function getTodoHTMLList(todoList){
+        return todoList.map(todoItem => `<li>${todoItem.Text}</li>`).join('');
     }
+    // renderTodos(todos) =>
 
     $todoForm.on('submit', function(event) {
         event.preventDefault();
         addItem.call(this,'todo-text');
-        buildHTMLList();
+        this.reset();
+        $todoList.html(getTodoHTMLList(todos));
     });
 });
